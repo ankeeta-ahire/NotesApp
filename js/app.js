@@ -22,6 +22,10 @@ addBtn.addEventListener('click', function(){
     addTxt.value="";      // after adding note text area should be empty
     addTitle.value="";
     // console.log(notesObj);
+
+    if((addTxt.value.length == 0) && (addTitle.value.length == 0)){
+        alert("Please enter a note");
+    }
     showNotes();
 })
 
@@ -35,6 +39,8 @@ function showNotes(){
         notesObj = JSON.parse(notes);  // convert string to array
     }
     let html = "";
+
+    if((addTxt.value.length != 0) && (addTitle.value.length != 0)){
     notesObj.forEach(function(element,index){
         html += `<div class="noteCard my-2 mx-2 card" style="width: 18rem;">
         
@@ -45,6 +51,7 @@ function showNotes(){
         </div>
       </div>  `;
     });
+    }
 
     let notesElm = document.getElementById('notes');
     if(notesObj.length !=0){
