@@ -17,16 +17,23 @@ addBtn.addEventListener('click', function(){
         title: addTitle.value,
         text: addTxt.value
     }
-    notesObj.push(myObj);
-    localStorage.setItem('notes',JSON.stringify(notesObj));
+    if((addTxt.value.length != 0) && (addTitle.value.length != 0)){
+        // console.log("error here");
+        notesObj.push(myObj);
+        localStorage.setItem('notes',JSON.stringify(notesObj));
+    }
+    else{
+        alert("Please enter a note");
+
+    }
+   
+    // console.log(notesObj);
+    // console.log(addTxt.value.length);
+   
+    showNotes();
     addTxt.value="";      // after adding note text area should be empty
     addTitle.value="";
-    // console.log(notesObj);
-
-    if((addTxt.value.length == 0) && (addTitle.value.length == 0)){
-        alert("Please enter a note");
-    }
-    showNotes();
+    
 })
 
 // function to show notes from local storage
@@ -40,7 +47,7 @@ function showNotes(){
     }
     let html = "";
 
-    if((addTxt.value.length != 0) && (addTitle.value.length != 0)){
+    // if((addTxt.value.length != 0) && (addTitle.value.length != 0)){
     notesObj.forEach(function(element,index){
         html += `<div class="noteCard my-2 mx-2 card" style="width: 18rem;">
         
@@ -51,7 +58,7 @@ function showNotes(){
         </div>
       </div>  `;
     });
-    }
+    // }
 
     let notesElm = document.getElementById('notes');
     if(notesObj.length !=0){
